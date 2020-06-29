@@ -26,8 +26,8 @@
 #define CMND_RESET "reset"
 #define CMND_MAX_LEN 10
 
-#define POWER_PIN D7
-#define RESET_PIN D6
+#define POWER_PIN D8
+#define RESET_PIN D7
 
 const char cDeviceName[] = "WakeOnEsp";
 const char cInitialPwd[] = "wakeonesp";
@@ -292,13 +292,13 @@ void applyAction(uint8_t action, unsigned long now){
   if (ACTION_FEQ_LIMIT < (now - lastActionAttempt)){
     if(ACTION_POWER == action){
       LOGLN("Action - Power On/Off");
-      togglePin(POWER_PIN, 200);
+      togglePin(POWER_PIN, 500);
     } else if(ACTION_FORCE_OFF == action){
       LOGLN("Action - Force Off");
-      togglePin(POWER_PIN, 5000);
+      togglePin(POWER_PIN, 6500);
     } else if(ACTION_RESET == action){
       LOGLN("Action - Reset");
-      togglePin(RESET_PIN, 200);
+      togglePin(RESET_PIN, 500);
     }
     lastActionAttempt = now;
   }
